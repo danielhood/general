@@ -5,6 +5,8 @@
 
 #include <d2d1.h>
 
+#include "MeshGen.h"
+
 using namespace std;
 
 #pragma region WinMain
@@ -44,95 +46,6 @@ int WINAPI WinMain(
 	return 0;
 }
 
-/******************************************************************
-*                                                                 *
-*  Static Data                                                    *
-*                                                                 *
-******************************************************************/
-
-const D3D10_INPUT_ELEMENT_DESC DemoApp::s_InputLayout[] =
-{
-	{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D10_INPUT_PER_VERTEX_DATA, 0},
-	{ "NORMAL",    0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D10_INPUT_PER_VERTEX_DATA, 0 }
-//	,{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D10_INPUT_PER_VERTEX_DATA, 0},
-};
-/*
-const SimpleVertex DemoApp::s_VertexArray[] =
-{
-	{ D3DXVECTOR3( -1.0f, -1.0f, 1.0f ), D3DXVECTOR3( 0.0f, 0.0f, 1.0f ) }, 
-	{ D3DXVECTOR3(  1.0f, -1.0f, 1.0f ), D3DXVECTOR3( 0.0f, 0.0f, 1.0f ) }, 
-	{ D3DXVECTOR3(  1.0f,  1.0f, 1.0f ), D3DXVECTOR3( 0.0f, 0.0f, 1.0f ) }, 
-	{ D3DXVECTOR3( -1.0f,  1.0f, 1.0f ), D3DXVECTOR3( 0.0f, 0.0f, 1.0f ) }
-};
-
-const SHORT DemoApp::s_FacesIndexArray[] =
-{
-	3, 1, 0,
-	2, 1, 3
-};
-*/
-
-/*
-const SimpleVertex DemoApp::s_VertexArray[] =
-{
-	{ D3DXVECTOR3(  1.0f,  1.0f, 1.0f ), D3DXVECTOR3( 1.0f, 0.0f, 0.0f ) }, 
-	{ D3DXVECTOR3(  1.0f, -1.0f, 1.0f ), D3DXVECTOR3( 1.0f, 0.0f, 0.0f ) }, 
-	{ D3DXVECTOR3( -1.0f, -1.0f, 1.0f ), D3DXVECTOR3( 1.0f, 0.0f, 0.0f ) }
-};
-
-const SHORT DemoApp::s_FacesIndexArray[] =
-{
-	2,1,0
-};
-*/
-
-
-
-//const SimpleVertex DemoApp::s_VertexArray[] =
-//{
-//	{ D3DXVECTOR3( -1.0f, -1.0f, 1.0f ),  D3DXVECTOR3(-1.0f, 0.0f, 0.0f )  }, 
-//	{ D3DXVECTOR3(  1.0f, -1.0f, 1.0f ),  D3DXVECTOR3(-1.0f, 0.0f, 0.0f )  }, 
-//	{ D3DXVECTOR3(  1.0f,  1.0f, 1.0f ),  D3DXVECTOR3(-1.0f, 0.0f, 0.0f )  }, 
-//	{ D3DXVECTOR3( -1.0f,  1.0f, 1.0f ),  D3DXVECTOR3(-1.0f, 0.0f, 0.0f )  },
-//	{ D3DXVECTOR3( -1.0f, -1.0f, -1.0f ), D3DXVECTOR3(-1.0f, 0.0f, 0.0f )  }, 
-//	{ D3DXVECTOR3(  1.0f, -1.0f, -1.0f ), D3DXVECTOR3(-1.0f, 0.0f, 0.0f )  }, 
-//	{ D3DXVECTOR3(  1.0f,  1.0f, -1.0f ), D3DXVECTOR3(-1.0f, 0.0f, 0.0f )  }, 
-//	{ D3DXVECTOR3( -1.0f,  1.0f, -1.0f ), D3DXVECTOR3(-1.0f, 0.0f, 0.0f )  }
-//};
-
-const SimpleVertex DemoApp::s_VertexArray[] =
-{
-	{ D3DXVECTOR3( -1.0f, -1.0f, 1.0f ),  D3DXVECTOR3(-1.0f, -1.0f, 1.0f )  }, 
-	{ D3DXVECTOR3(  1.0f, -1.0f, 1.0f ),  D3DXVECTOR3( 1.0f, -1.0f, 1.0f )  }, 
-	{ D3DXVECTOR3(  1.0f,  1.0f, 1.0f ),  D3DXVECTOR3( 1.0f,  1.0f, 1.0f )  }, 
-	{ D3DXVECTOR3( -1.0f,  1.0f, 1.0f ),  D3DXVECTOR3(-1.0f,  1.0f, 1.0f )  },
-	{ D3DXVECTOR3( -1.0f, -1.0f, -1.0f ), D3DXVECTOR3( -1.0f, -1.0f, -1.0f ) }, 
-	{ D3DXVECTOR3(  1.0f, -1.0f, -1.0f ), D3DXVECTOR3( 1.0f, -1.0f, -1.0f ) }, 
-	{ D3DXVECTOR3(  1.0f,  1.0f, -1.0f ), D3DXVECTOR3( 1.0f,  1.0f, -1.0f ) }, 
-	{ D3DXVECTOR3( -1.0f,  1.0f, -1.0f ), D3DXVECTOR3(-1.0f,  1.0f, -1.0f ) }
-};
-
-const SHORT DemoApp::s_FacesIndexArray[] =
-{
-	3, 1, 0,
-	2, 1, 3,
-
-	2, 5, 1,
-	6, 5, 2,
-
-	6, 4, 5,
-	7, 4, 6,
-
-	7, 0, 4,
-	3, 0, 7,
-
-	7, 2, 3,
-	6, 2, 7,
-
-	5, 4, 1,
-	4, 0, 1,
-};
-
 #pragma endregion
 
 #pragma region DemoApp
@@ -166,6 +79,8 @@ DemoApp::DemoApp() :
 		m_appState.dx = 0;
 		m_appState.dy = 0;
 		m_appState.running = false;
+
+		pMeshGen = new MeshGen;
 	}
 
 	/******************************************************************
@@ -188,6 +103,8 @@ DemoApp::DemoApp() :
 		SafeRelease(&m_pVertexBuffer);
 		SafeRelease(&m_pVertexLayout);
 		SafeRelease(&m_pFacesIndexBuffer);
+
+		delete pMeshGen;
 	}
 
 	/******************************************************************
@@ -359,12 +276,14 @@ DemoApp::DemoApp() :
 		{
 			D3D10_BUFFER_DESC bd;
 			bd.Usage = D3D10_USAGE_DEFAULT;
-			bd.ByteWidth = sizeof(s_VertexArray);
+			//bd.ByteWidth = sizeof(s_VertexArray);
+			bd.ByteWidth = pMeshGen->VertexArrayByteWidth();
 			bd.BindFlags = D3D10_BIND_VERTEX_BUFFER;
 			bd.CPUAccessFlags = 0;
 			bd.MiscFlags = 0;
 			D3D10_SUBRESOURCE_DATA InitData;
-			InitData.pSysMem = s_VertexArray;
+			//InitData.pSysMem = s_VertexArray;
+			InitData.pSysMem = pMeshGen->GetVertexArray();
 
 			V_RETURN( m_pDevice->CreateBuffer(&bd, &InitData, &m_pVertexBuffer) );
 
@@ -387,12 +306,14 @@ DemoApp::DemoApp() :
 		{
 			D3D10_BUFFER_DESC bd;
 			bd.Usage = D3D10_USAGE_DEFAULT;
-			bd.ByteWidth = sizeof(s_FacesIndexArray);
+			//bd.ByteWidth = sizeof(s_FacesIndexArray);
+			bd.ByteWidth = pMeshGen->FaceIndexArrayByteWidth();
 			bd.BindFlags = D3D10_BIND_INDEX_BUFFER;
 			bd.CPUAccessFlags = 0;
 			bd.MiscFlags = 0;
 			D3D10_SUBRESOURCE_DATA InitData;
-			InitData.pSysMem = s_FacesIndexArray;
+			//InitData.pSysMem = s_FacesIndexArray;
+			InitData.pSysMem = pMeshGen->GetFaceIndexArray();
 
 			V_RETURN( m_pDevice->CreateBuffer(&bd, &InitData, &m_pFacesIndexBuffer) );
 		}
@@ -435,14 +356,16 @@ DemoApp::DemoApp() :
 
 		// Define the input layout
 		{
-			UINT numElements = ARRAYSIZE(s_InputLayout);
+			//UINT numElements = ARRAYSIZE(s_InputLayout);
+			UINT numElements = pMeshGen->InputLayoutArrayCount();
 
 			// Create the input layout
 			D3D10_PASS_DESC PassDesc;
 			m_pTechniqueNoRef->GetPassByIndex(0)->GetDesc(&PassDesc);
 
 			V_RETURN( m_pDevice->CreateInputLayout(
-				s_InputLayout,
+				//s_InputLayout,
+				pMeshGen->GetInputLayoutArray(),
 				numElements,
 				PassDesc.pIAInputSignature,
 				PassDesc.IAInputSignatureSize,
@@ -928,7 +851,8 @@ DemoApp::DemoApp() :
 
 			// Draw the faces
 			m_pDevice->DrawIndexed(
-				ARRAYSIZE(s_FacesIndexArray),
+				//ARRAYSIZE(s_FacesIndexArray),
+				pMeshGen->FaceIndexArrayCount(),
 				0,
 				0
 				);

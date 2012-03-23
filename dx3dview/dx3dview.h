@@ -33,6 +33,7 @@
 #include <fstream>
 
 #include "d3dmath.h"
+#include "meshGen.h"
 
 #define IDR_PIXEL_SHADER 100
 
@@ -96,18 +97,6 @@ typedef struct
 	float length;
 } tState;
 
-/******************************************************************
-*                                                                 *
-*  SimpleVertex                                                   *
-*                                                                 *
-******************************************************************/
-
-struct SimpleVertex
-{
-    D3DXVECTOR3 Pos;
-	D3DXVECTOR3 N;
-	//D3DXVECTOR2 Tex;
-};
 
 class DemoApp
 {
@@ -167,6 +156,8 @@ private:
 	ID3D10Device* m_pDevice;
 	ID3D10RasterizerState *m_pState;
 
+	MeshGen* pMeshGen;
+
 	ID3D10Buffer *m_pVertexBuffer;
     ID3D10InputLayout *m_pVertexLayout;
 	ID3D10Buffer *m_pFacesIndexBuffer;
@@ -187,7 +178,7 @@ private:
     D3DXMATRIX m_ViewMatrix;
     D3DXMATRIX m_ProjectionMatrix;
 
-	static const SimpleVertex s_VertexArray[];
-	static const SHORT DemoApp::s_FacesIndexArray[];
-	static const D3D10_INPUT_ELEMENT_DESC s_InputLayout[];
+	//static const SimpleVertex s_VertexArray[];
+	//static const SHORT DemoApp::s_FacesIndexArray[];
+	//static const D3D10_INPUT_ELEMENT_DESC s_InputLayout[];
 };

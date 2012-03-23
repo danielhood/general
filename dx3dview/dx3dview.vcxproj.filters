@@ -18,12 +18,18 @@
     <ClCompile Include="dx3dview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MeshGen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dx3dview.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="d3dmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshGen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -201,10 +201,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dx3dview.cpp" />
+    <ClCompile Include="MeshGen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dmath.h" />
     <ClInclude Include="dx3dview.h" />
+    <ClInclude Include="MeshGen.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.fx">
