@@ -3,10 +3,6 @@
 
 #include "dx3dview.h"
 
-#include <d2d1.h>
-
-#include "MeshGen.h"
-
 using namespace std;
 
 #pragma region WinMain
@@ -80,7 +76,10 @@ DemoApp::DemoApp() :
 		m_appState.dy = 0;
 		m_appState.running = false;
 
-		pMeshGen = new MeshGen;
+		//pMeshGen = new CubeMesh;
+		pMeshGen = new SphereMesh;
+		//pMeshGen = new TorusMesh;
+		pMeshGen->Init();
 	}
 
 	/******************************************************************
@@ -256,13 +255,15 @@ DemoApp::DemoApp() :
 		{
 			D3D10_RASTERIZER_DESC rsDesc;
 			//rsDesc.AntialiasedLineEnable = FALSE;
+			//rsDesc.CullMode = D3D10_CULL_FRONT;
 			//rsDesc.CullMode = D3D10_CULL_BACK;
 			rsDesc.CullMode = D3D10_CULL_NONE;
 			rsDesc.DepthBias = 0;
 			rsDesc.DepthBiasClamp = 0;
 			rsDesc.DepthClipEnable = TRUE;
 			//rsDesc.FillMode = D3D10_FILL_WIREFRAME;
-			rsDesc.FillMode = D3D10_FILL_SOLID;
+			//rsDesc.FillMode = D3D10_FILL_SOLID;
+			rsDesc.FillMode = pMeshGen->FillMode();
 			rsDesc.FrontCounterClockwise = FALSE; // Must be FALSE for 10on9
 			rsDesc.MultisampleEnable = FALSE;
 			rsDesc.ScissorEnable = FALSE;

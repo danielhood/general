@@ -79,7 +79,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USE_MATH_DEFINES;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -200,13 +200,19 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CubeMesh.cpp" />
     <ClCompile Include="dx3dview.cpp" />
     <ClCompile Include="MeshGen.cpp" />
+    <ClCompile Include="SphereMesh.cpp" />
+    <ClCompile Include="TorusMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CubeMesh.h" />
     <ClInclude Include="d3dmath.h" />
     <ClInclude Include="dx3dview.h" />
     <ClInclude Include="MeshGen.h" />
+    <ClInclude Include="SphereMesh.h" />
+    <ClInclude Include="TorusMesh.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.fx">

@@ -28,7 +28,9 @@ class MeshGen
 {
 public:
 	MeshGen(void);
-	~MeshGen(void);
+	virtual ~MeshGen(void);
+
+	void Init();
 
 	SimpleVertex* GetVertexArray();
 	SimpleFace* GetFaceIndexArray();
@@ -44,6 +46,8 @@ public:
 	UINT InputLayoutArrayByteWidth();
 	UINT InputLayoutArrayCount();
 
+	D3D10_FILL_MODE FillMode();
+
 protected:
 	UINT faceCount;
 
@@ -57,14 +61,12 @@ protected:
 	//UINT bCount = 360;
 
 	// Cube
-	UINT aCount;
-	UINT bCount;
+	SHORT aCount;
+	SHORT bCount;
 
+	D3D10_FILL_MODE fillMode;
 
-private:
-	void BuildMesh();
-	void CreateArrays();
-	void DestroyArrays();
-
+protected:
+	virtual void BuildMesh();
 };
 

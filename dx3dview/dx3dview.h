@@ -27,13 +27,18 @@
 
 #include <d3d10_1.h>
 #include <D3DX10math.h>
+#include <d2d1.h>
 #include <dwrite.h>
 #include <wincodec.h>
 
 #include <fstream>
 
 #include "d3dmath.h"
-#include "meshGen.h"
+#include "MeshGen.h"
+#include "CubeMesh.h"
+#include "SphereMesh.h"
+#include "TorusMesh.h"
+
 
 #define IDR_PIXEL_SHADER 100
 
