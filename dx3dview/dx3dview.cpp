@@ -77,8 +77,8 @@ DemoApp::DemoApp() :
 		m_appState.running = false;
 
 		//pMeshGen = new CubeMesh;
-		pMeshGen = new SphereMesh;
-		//pMeshGen = new TorusMesh;
+		//pMeshGen = new SphereMesh;
+		pMeshGen = new TorusMesh;
 		pMeshGen->Init();
 	}
 
@@ -256,8 +256,8 @@ DemoApp::DemoApp() :
 			D3D10_RASTERIZER_DESC rsDesc;
 			//rsDesc.AntialiasedLineEnable = FALSE;
 			//rsDesc.CullMode = D3D10_CULL_FRONT;
-			//rsDesc.CullMode = D3D10_CULL_BACK;
-			rsDesc.CullMode = D3D10_CULL_NONE;
+			rsDesc.CullMode = D3D10_CULL_BACK;
+			//rsDesc.CullMode = D3D10_CULL_NONE;
 			rsDesc.DepthBias = 0;
 			rsDesc.DepthBiasClamp = 0;
 			rsDesc.DepthClipEnable = TRUE;
@@ -351,7 +351,7 @@ DemoApp::DemoApp() :
 			V_RETURN( m_pProjectionVariableNoRef ? S_OK : E_FAIL );
 
 			m_pLightDir = m_pShader->GetVariableByName( "LightDir" )->AsVector();
-			D3DXVECTOR3 vLightDir( 0.5f, 0.5f, -1.0f );
+			D3DXVECTOR3 vLightDir( 0.0f, -1.0f, -1.0f );
 			V_RETURN( m_pLightDir->SetRawValue( (float*)&vLightDir, 0, sizeof( D3DXVECTOR3) ) );
 		}
 
@@ -845,7 +845,8 @@ DemoApp::DemoApp() :
 			m_pDevice->ClearDepthStencilView( m_pDepthStencilView, D3D10_CLEAR_DEPTH, 1, 0 );
 
 			// Set the face list buffer
-			m_pDevice->IASetIndexBuffer(m_pFacesIndexBuffer, DXGI_FORMAT_R16_UINT, 0);
+			//m_pDevice->IASetIndexBuffer(m_pFacesIndexBuffer, DXGI_FORMAT_R16_UINT, 0);
+			m_pDevice->IASetIndexBuffer(m_pFacesIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
 			// Apply the effect
 			m_pTechniqueNoRef->GetPassByIndex(0)->Apply(0);

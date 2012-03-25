@@ -3,17 +3,16 @@
 
 TorusMesh::TorusMesh(void)
 {
-	divider = 8;
+	divider = 1;
 	aCount = 360/divider;
 	bCount = 360/divider;
 
-	faceCount = aCount*bCount*2;
+	faceCount = VertexArrayCount()*2;
 
-	r=1.5;
-	rr=0.5;
+	r=0.25;
+	rr=3;
 
-	fillMode = D3D10_FILL_WIREFRAME;
-	//fillMode = D3D10_FILL_SOLID;
+	//fillMode = D3D10_FILL_WIREFRAME;
 }
 
 
@@ -28,19 +27,19 @@ void TorusMesh::BuildMesh()
 
 	UINT faceIndex = 0;
 
-	for (SHORT a = 0; a < aCount; a++)
+	for (UINT a = 0; a < aCount; a++)
 	{
-		for (SHORT b = 0; b < bCount; b++)
+		for (UINT b = 0; b < bCount; b++)
 		{
-			SHORT vIndex = GetVIndex(a, b);
+			UINT vIndex = GetVIndex(a, b);
 
 			float aRad = a*divider * (float)M_PI / 180;
 			float bRad = b*divider * (float)M_PI / 180;
 
 			// Set vertex position
-			pVertexArray[vIndex].Pos.x = (rr + r * sin(aRad)) * sin(bRad);
-			pVertexArray[vIndex].Pos.z = r * cos(aRad);
-			pVertexArray[vIndex].Pos.y = -(rr + r * sin(aRad)) * cos(bRad);;
+			pVertexArray[vIndex].Pos.x = (rr + r * cos(aRad)) * sin(bRad);
+			pVertexArray[vIndex].Pos.y = r * sin(aRad);
+			pVertexArray[vIndex].Pos.z = (rr + r * cos(aRad)) * cos(bRad);;
 
 			// Set Normal vector
 			pVertexArray[vIndex].N.x = pVertexArray[vIndex].Pos.x;
@@ -59,15 +58,15 @@ void TorusMesh::BuildMesh()
 	}
 }
 
-SHORT TorusMesh::GetVIndex(SHORT a, SHORT b)
+UINT TorusMesh::GetVIndex(UINT a, UINT b)
 {
-	return (a * bCount + b)%VertexArrayCount();
+	return (a%aCount * bCount + b%bCount);
 }
 
 void TorusMesh::CreateArrays()
 {
-	pVertexArray = new SimpleVertex[aCount*bCount];
-	pFaceIndexArray = new SimpleFace[aCount*bCount*2];
+	pVertexArray = new SimpleVertex[VertexArrayCount()];
+	pFaceIndexArray = new SimpleFace[faceCount];
 }
 
 void TorusMesh::DestroyArrays()

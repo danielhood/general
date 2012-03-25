@@ -17,10 +17,9 @@ typedef struct SimpleVertex
 
 typedef struct SimpleFace
 {
-	//SHORT vIdx[3];
-	SHORT v0;
-	SHORT v1;
-	SHORT v2;
+	UINT v0;
+	UINT v1;
+	UINT v2;
 } SimpleFace;
 
 
@@ -61,8 +60,8 @@ protected:
 	//UINT bCount = 360;
 
 	// Cube
-	SHORT aCount;
-	SHORT bCount;
+	UINT aCount;
+	UINT bCount;
 
 	D3D10_FILL_MODE fillMode;
 

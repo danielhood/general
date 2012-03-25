@@ -16,7 +16,7 @@ protected:
 private:
 	void CreateArrays();
 	void DestroyArrays();
-	SHORT GetVIndex(SHORT a, SHORT b);
+	UINT GetVIndex(UINT a, UINT b);
 
 private:
 	float r;
