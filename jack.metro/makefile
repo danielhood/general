@@ -1,7 +1,9 @@
 CC=gcc
 
+LIBS=`pkg-config --cflags --libs jack`
+
 metronome: metro.o
-	$(CC) -o $@ $^ `pkg-config --cflags --libs jack` 
+	$(CC) -o $@ $^ $(LIBS)
 
 metro.o: metro.c
 	$(CC) -c -o $@ $^
