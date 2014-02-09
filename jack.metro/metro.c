@@ -68,6 +68,7 @@ process_audio (jack_nframes_t nframes)
 int
 process (jack_nframes_t nframes, void *arg)
 {
+	if (nframes > 1) printf("Samples %d", nframes);
         if (transport_aware) {
                 jack_position_t pos;
 
