@@ -1,5 +1,5 @@
-Creating SSH key
-----------------
+Creating SSH key some additons from first developer
+---------------- some more additons from first developer
 $ cd ~\.ssh
 $ ssh-keygen -t rsa -C "danielhood@hotmail.com"
 
