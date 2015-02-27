@@ -1,5 +1,5 @@
 set -e
-if [! -d "build" ]; then
+if [ ! -d "build" ]; then
 	mkdir build
 fi
 
